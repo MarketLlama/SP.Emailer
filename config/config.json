@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "share-point-emailer-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/sharePointEmailer/SharePointEmailerWebPart.js",
+          "manifest": "./src/webparts/sharePointEmailer/SharePointEmailerWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SharePointEmailerWebPartStrings": "lib/webparts/sharePointEmailer/loc/{locale}.js"
+  }
+}
