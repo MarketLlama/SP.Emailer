@@ -6,8 +6,12 @@ import { escape } from '@microsoft/sp-lodash-subset';
 import { Modal } from 'office-ui-fabric-react/lib/Modal';
 import { PrimaryButton ,ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import { sp, EmailProperties } from "@pnp/sp";
+import '../emailTemplates/standardEmailTemplate.html';
 
 export default class SharePointEmailer extends React.Component<ISharePointEmailerProps, ISharePointEmailerState> {
+  private _emailTemplate = require("../emailTemplates/standardEmailTemplate.html");
+
 
   constructor(props) {
     super(props);
@@ -70,6 +74,15 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
   }
 
   private _sendEmail = () : void =>{
-    alert('Mail sent' + this.state.emailText);
+
+      const emailProps: EmailProperties = {
+          To: [""],
+          Subject: "This email is about...",
+          Body: `${this._emailTemplate}`,
+      };
+
+      sp.utility.sendEmail(emailProps).then(_ => {
+          console.log("Email Sent!");
+      });
   }
 }
