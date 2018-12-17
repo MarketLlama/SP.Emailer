@@ -16,11 +16,11 @@
   "preconfiguredEntries": [{
     "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
     "group": { "default": "Other" },
-    "title": { "default": "SharePoint Emailer" },
-    "description": { "default": "SharePoint Emailer description" },
-    "officeFabricIconFontName": "Page",
+    "title": { "default": "SharePoint Subscription Emailer" },
+    "description": { "default": "SharePoint Emailer for Positions site, will email subscribers of a page." },
+    "officeFabricIconFontName": "Mail",
     "properties": {
-      "description": "SharePoint Emailer"
+      "description": "SharePoint Subscription Emailer"
     }
   }]
 }

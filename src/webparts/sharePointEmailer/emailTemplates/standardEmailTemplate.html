@@ -58,7 +58,7 @@
       /* makes it centered */
       max-width: 580px;
       padding: 10px;
-      width: 580px;
+      width: 680px;
     }
 
     /* This should also be a block element, so that it will fill 100% of the .container */
@@ -145,7 +145,7 @@
     }
 
     a {
-      color: #3498db;
+      color: #5f7800;
       text-decoration: underline;
     }
 
@@ -173,10 +173,10 @@
 
     .btn a {
       background-color: #ffffff;
-      border: solid 1px #3498db;
+      border: solid 1px #5f7800;
       border-radius: 5px;
       box-sizing: border-box;
-      color: #3498db;
+      color: #5f7800;
       cursor: pointer;
       display: inline-block;
       font-size: 14px;
@@ -188,12 +188,12 @@
     }
 
     .btn-primary table td {
-      background-color: #3498db;
+      background-color: #5f7800;
     }
 
     .btn-primary a {
-      background-color: #3498db;
-      border-color: #3498db;
+      background-color: #5f7800;
+      border-color: #5f7800;
       color: #ffffff;
     }
 
@@ -343,7 +343,6 @@
         border-color: #34495e !important;
       }
     }
-
   </style>
 </head>
 
@@ -355,7 +354,6 @@
         <div class="content">
 
           <!-- START CENTERED WHITE CONTAINER -->
-          <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
           <table role="presentation" class="main">
 
             <!-- START MAIN CONTENT AREA -->
@@ -366,6 +364,7 @@
                     <td>
                       <p>Hi {{userName}},</p>
                       <p>{{emailContent}}</p>
+                      <br />
                       <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                         <tbody>
                           <tr>
@@ -381,9 +380,12 @@
                           </tr>
                         </tbody>
                       </table>
-                      <p>This is a really simple email template. Its sole purpose is to get the recipient to click the
-                        button with no distractions.</p>
-                      <p>Good luck! Hope it works.</p>
+                      <br />
+                      <p>If your questions are of a more general nature, please contact:
+                        <span class="ms-rteStyle-Emphasis">
+                          <a href="mailto:ourpointofview@syngenta.com">ourpointofview@syngenta.com</a>
+                        </span>
+                      </p>
                     </td>
                   </tr>
                 </table>
@@ -397,14 +399,9 @@
           <div class="footer">
             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
               <tr>
-                <td class="content-block">
-                  <span class="apple-link">Company Inc, 3 Abbey Road, San Francisco CA 94102</span>
-                  <br> Don't like these emails? <a href="http://i.imgur.com/CScmqnj.gif">Unsubscribe</a>.
-                </td>
-              </tr>
-              <tr>
                 <td class="content-block powered-by">
-                  Powered by <a href="http://htmlemail.io">HTMLemail</a>.
+                  This content is for responsible use. <a href="https://syngenta.sharepoint.com/sites/positions/Pages/How-to-Use.aspx">
+                    Read More</a>.
                 </td>
               </tr>
             </table>
