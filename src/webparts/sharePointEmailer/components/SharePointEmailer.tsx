@@ -80,7 +80,6 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
 
   private _showModal = (): void => {
     this.setState({ showModal: true });
-    console.log('Open Modal');
   }
 
   private _closeModal = (): void => {
@@ -161,7 +160,7 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
     this._currentPage = await this._getPageDetails();
     console.log(this._currentPage);
     //Gets the subsribers of the page and sets them as default email contacts for the emailer.
-    //Uses the defaultSelectedUsers 
+    //Uses the defaultSelectedUsers
     let subscriptions = await this._getSubscriptions();
     let string = JSON.stringify(subscriptions);
     let arr: any[] = JSON.parse(string);
