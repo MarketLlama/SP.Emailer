@@ -1,12 +1,12 @@
 {
   "@microsoft/generator-sharepoint": {
-    "isCreatingSolution": true,
+    "isCreatingSolution": false,
     "environment": "spo",
     "version": "1.8.2",
     "libraryName": "share-point-emailer",
     "libraryId": "31c80b49-01ce-4907-a90b-4971be752014",
     "packageManager": "npm",
-    "componentType": "webpart",
-    "isDomainIsolated": false
+    "isDomainIsolated": false,
+    "componentType": "webpart"
   }
 }
