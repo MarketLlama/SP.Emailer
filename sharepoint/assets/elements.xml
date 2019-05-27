@@ -5,7 +5,7 @@
            Name="UserID"
            StaticName="UserID"
            DisplayName="User ID"
-           Type="Number"
+           Type="Text"
            Required="TRUE"
            Group="Subscription Columns" />
 

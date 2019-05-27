@@ -119,7 +119,7 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
 
   private _getPageDetails = async () => {
     var id = this.props.context.pageContext.listItem.id;
-    const pages = sp.web.lists.getByTitle('Pages').items;
+    const pages = sp.web.lists.getByTitle('SitePages').items;
     let page = await pages.getById(id).select("Title", "FileRef").get();
     return page;
   }

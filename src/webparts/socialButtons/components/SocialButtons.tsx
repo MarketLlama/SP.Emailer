@@ -3,18 +3,24 @@ import styles from './SocialButtons.module.scss';
 import { ISocialButtonsProps } from './ISocialButtonsProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 import { Button } from 'office-ui-fabric-react';
+import { sp, Items, ItemAddResult } from "@pnp/sp";
 
 export interface ISocialButtonsState {
   isSubscribed : boolean;
 }
 
-
 export default class SocialButtons extends React.Component<ISocialButtonsProps, ISocialButtonsState> {
+  private _subScriptionListItems : Items = {} as Items;
   constructor(props : ISocialButtonsProps){
     super(props);
     this.state ={
-      isSubscribed : true //To do with prop
+      isSubscribed : false
     };
+    sp.setup({
+      spfxContext : this.props.context
+    });
+    this._subScriptionListItems = sp.web.lists.getByTitle('Subscriptions').items;
+    this._isSubscribedToPage();
   }
   public render(): React.ReactElement<ISocialButtonsProps> {
     return (
@@ -48,16 +54,35 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
   }
 
   private _subscribeToPage = () =>{
-    console.log('Subscribed');
-    this.setState({
-      isSubscribed : true
+    this._subScriptionListItems.add({
+      PageID : this.props.pageId,
+      UserID : this.props.context.pageContext.user.loginName,
+      SubscriptionEmail : this.props.context.pageContext.user.email
+    }).then((value : ItemAddResult) =>{
+      this.setState({
+        isSubscribed : true
+      });
+    }, err =>{
+      console.log(err);
     });
   }
 
   private _unsubscribeToPage =() =>{
-    this.setState({
-      isSubscribed : false
-    });
+    const PageID = this.props.pageId;
+    const UserID = this.props.context.pageContext.user.loginName;
+    this._subScriptionListItems.filter(`PageID eq '${PageID}' and UserID eq ${UserID}`)
+      .get().then((value : any[]) =>{
+        if(value){
+          this._subScriptionListItems.getById(value[0].Id).delete().then(v =>{
+            this.setState({
+              isSubscribed : false
+            });
+          }, err => console.log(err));
+        }
+      }, err =>{
+        console.log(err);
+      });
+
   }
 
   private _sharePageOnYammer = ()=>{
@@ -65,7 +90,16 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
   }
 
   private _isSubscribedToPage = ()=>{
-
+    const PageID = this.props.pageId;
+    const UserID = this.props.context.pageContext.user.loginName;
+    this._subScriptionListItems.filter(`PageID eq '${PageID}' and UserID eq ${UserID}`)
+      .get().then((value : any[]) =>{
+        if(value){
+          this.setState({
+            isSubscribed: true
+          });
+        }
+      });
   }
 
 }

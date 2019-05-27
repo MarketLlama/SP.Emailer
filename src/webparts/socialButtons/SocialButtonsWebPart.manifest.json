@@ -19,7 +19,7 @@
     "group": { "default": "Other" },
     "title": { "default": "socialButtons" },
     "description": { "default": "Subscription and yammer buttons" },
-    "officeFabricIconFontName": "Page",
+    "officeFabricIconFontName": "Heart",
     "properties": {
       "description": "socialButtons"
     }

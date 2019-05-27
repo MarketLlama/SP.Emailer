@@ -21,7 +21,8 @@ export default class SocialButtonsWebPart extends BaseClientSideWebPart<ISocialB
     const element: React.ReactElement<ISocialButtonsProps > = React.createElement(
       SocialButtons,
       {
-        description: this.properties.description
+        context: this.context,
+        pageId : this.context.pageContext.listItem.id
       }
     );
 
