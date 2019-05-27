@@ -5,7 +5,8 @@
     "id": "31c80b49-01ce-4907-a90b-4971be752014",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
-    "skipFeatureDeployment": true
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false
   },
   "paths": {
     "zippedPackage": "solution/share-point-emailer.sppkg"

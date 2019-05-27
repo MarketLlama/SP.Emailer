@@ -9,12 +9,8 @@ import "@pnp/polyfill-ie11";
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
-import {
-  BaseClientSideWebPart,
-  IPropertyPaneConfiguration,
-  PropertyPaneTextField
-} from '@microsoft/sp-webpart-base';
-
+import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
+import { IPropertyPaneConfiguration, PropertyPaneTextField } from "@microsoft/sp-property-pane";
 import * as strings from 'SharePointEmailerWebPartStrings';
 import SharePointEmailer from './components/SharePointEmailer';
 import { ISharePointEmailerProps } from './components/ISharePointEmailerProps';
