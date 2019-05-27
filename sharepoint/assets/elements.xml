@@ -38,6 +38,7 @@
    </ContentType>
 
    <ListInstance
+           Hidden="TRUE"
            CustomSchema="schema.xml"
            FeatureId="bb4775f4-f5ae-4efb-9c5d-db8795d3637c"
            Title="Subscriptions"
