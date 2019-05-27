@@ -6,7 +6,23 @@
     "version": "1.0.0.10",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
-    "isDomainIsolated": false
+    "isDomainIsolated": false,
+    "features": [
+      {
+        "title": "share-point-emailer-client-side-solutio",
+        "description": "share-point-emailer-client-side-solutio",
+        "id": "5cfd6181-8ff0-4752-b4a1-9b356d118820",
+        "version": "1.0.0.0",
+        "assets":  {
+          "elementManifests": [
+            "elements.xml"
+          ],
+          "elementFiles":[
+            "schema.xml"
+          ]
+        }
+      }
+    ]
   },
   "paths": {
     "zippedPackage": "solution/share-point-emailer.sppkg"
