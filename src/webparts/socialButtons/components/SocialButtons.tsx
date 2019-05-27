@@ -4,9 +4,11 @@ import { ISocialButtonsProps } from './ISocialButtonsProps';
 import { escape } from '@microsoft/sp-lodash-subset';
 import { Button } from 'office-ui-fabric-react';
 import { sp, Items, ItemAddResult } from "@pnp/sp";
+import YammerModal from './yammerModal/YammerModal';
 
 export interface ISocialButtonsState {
   isSubscribed : boolean;
+  showModal : boolean;
 }
 
 export default class SocialButtons extends React.Component<ISocialButtonsProps, ISocialButtonsState> {
@@ -14,7 +16,8 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
   constructor(props : ISocialButtonsProps){
     super(props);
     this.state ={
-      isSubscribed : false
+      isSubscribed : false,
+      showModal : false
     };
     sp.setup({
       spfxContext : this.props.context
@@ -41,13 +44,14 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
               />}
             </div>
             <div className={ styles.column }>
-              <Button className={styles.yammerButton}
+              <Button className={`${styles.yammerButton}s`}
                 iconProps={{iconName : "YammerLogo"}}
                 text="Share"
                 onClick={this._sharePageOnYammer}
               />
             </div>
           </div>
+          <YammerModal showModal={this.state.showModal}/>
         </div>
       </div>
     );
@@ -87,6 +91,9 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
 
   private _sharePageOnYammer = ()=>{
     console.log('Shared');
+    this.setState({
+      showModal : true
+    });
   }
 
   private _isSubscribedToPage = ()=>{
