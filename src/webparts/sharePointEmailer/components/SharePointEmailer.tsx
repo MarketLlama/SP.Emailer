@@ -119,9 +119,8 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
 
   private _getEmailContent = (user: any): string => {
     let emailTemplate = this._emailTemplate.toString();
-    let tenantUri = window.location.protocol + "//" + window.location.host;
     emailTemplate = emailTemplate.replace(/{{emailContent}}/gi, this.state.emailText)
-      .replace(/{{pageURL}}/gi, tenantUri + this._currentPage.FileRef)
+      .replace(/{{pageURL}}/gi, window.location.href)
       .replace(/{{userName}}/gi, user.UserName)
       .replace(/{{pageTitle}}/gi, this._currentPage.Title);
 
@@ -134,7 +133,7 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
       let emailContent = this._getEmailContent(user);
 
       const emailProps: EmailProperties = {
-        To: [user.Title],
+        To: [user.SubscriptionEmail],
         Subject: "Syngenta Positions : " + this._currentPage.Title,
         Body: emailContent
       };
