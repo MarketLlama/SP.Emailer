@@ -3,15 +3,15 @@
   "solution": {
     "name": "share-point-emailer-client-side-solution",
     "id": "31c80b49-01ce-4907-a90b-4971be752014",
-    "version": "1.0.0.15",
+    "version": "1.0.1.46",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": false,
     "isDomainIsolated": false,
     "features": [
       {
-        "title": "share-point-emailer-client-side-solutio",
-        "description": "share-point-emailer-client-side-solutio",
-        "id": "5cfd6181-8ff0-4752-b4a1-9b356d118820",
+        "title": "share-point-emailer-client-side-solution",
+        "description": "share-point-emailer-client-side-solution",
+        "id": "f6e09f89-5922-49a9-b679-35568e29ff1d",
         "version": "1.0.0.0",
         "assets":  {
           "elementManifests": [

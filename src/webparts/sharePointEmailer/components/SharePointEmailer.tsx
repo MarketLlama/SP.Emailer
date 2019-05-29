@@ -2,7 +2,6 @@ import * as React from 'react';
 import styles from './SharePointEmailer.module.scss';
 import { ISharePointEmailerProps } from './ISharePointEmailerProps';
 import { ISharePointEmailerState } from './ISharePointEmailerState';
-import { escape } from '@microsoft/sp-lodash-subset';
 import { Modal } from 'office-ui-fabric-react/lib/Modal';
 import { PrimaryButton, ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
@@ -36,17 +35,15 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
     return (
       <div className={styles.sharePointEmailer}>
         <div className={styles.container}>
-          <ActionButton iconProps={{ iconName: 'Mail' }} secondaryText="Opens the Sample Modal" onClick={this._showModal} text="Send Email" />
+          <ActionButton iconProps={{ iconName: 'Mail' }} onClick={this._showModal} text="Send Email to Subscribers" />
           <Modal
-            titleAriaId="titleId"
-            subtitleAriaId="subtitleId"
             isOpen={this.state.showModal}
             onDismiss={this._closeModal}
             isBlocking={false}
             className={styles.modalContainer}
           >
             <div className={styles.modalHeader}>
-              <span style={{ padding: "20px" }} id="titleId">Send Email</span>
+              <span style={{ padding: "20px" }} >Send Email</span>
               <ActionButton className={styles.closeButton} iconProps={{ iconName: 'Cancel' }} onClick={this._closeModal} />
             </div>
             <div id="subtitleId" className={styles.modalBody}>

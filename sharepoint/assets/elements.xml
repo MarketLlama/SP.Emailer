@@ -1,50 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-
-   <Field ID="{F9B8DAE9-FAC8-4304-B043-31E6AB66B964}"
-           Name="UserID"
-           StaticName="UserID"
-           DisplayName="User ID"
-           Type="Text"
-           Required="TRUE"
-           Group="Subscription Columns" />
-
-    <Field ID="{1DCECEB1-D1EC-49EB-9031-4A37EC609126}"
-           Name="PageID"
-           StaticName="PageID"
-           DisplayName="Page ID"
-           Type="Number"
-           Required="TRUE"
-           Group="Subscription Columns" />
-
-   <Field ID="{0C075436-FA73-4F8E-9EB3-E1F3CF6C1FC0}"
-           Name="SubscriptionEmail"
-           StaticName="SubscriptionEmail"
-           DisplayName="Email"
-           Type="Text"
-           Required="TRUE"
-           Group="Subscription Columns" />
-    </Field>
-
-   <ContentType ID="0x010042D0C1C200A14B6887742B6344675C8B"
-           Name="Subscriptions"
-           Group="Subscriptions"
-           Description="Subscriptions from web part Subscriptions Manager">
-       <FieldRefs>
-           <FieldRef ID="{F9B8DAE9-FAC8-4304-B043-31E6AB66B964}" />
-           <FieldRef ID="{1DCECEB1-D1EC-49EB-9031-4A37EC609126}" />
-           <FieldRef ID="{0C075436-FA73-4F8E-9EB3-E1F3CF6C1FC0}" />
-       </FieldRefs>
-   </ContentType>
-
-   <ListInstance
-           Hidden="TRUE"
-           CustomSchema="schema.xml"
-           FeatureId="bb4775f4-f5ae-4efb-9c5d-db8795d3637c"
-           Title="Subscriptions"
-           Description="Subscriptions"
-           TemplateType="100"
-           Url="Lists/Subscriptions">
-   </ListInstance>
-
+<Elements
+    xmlns="http://schemas.microsoft.com/sharepoint/">
+    <Field ID="{F9B8DAE9-FAC8-4304-B043-31E6AB66B964}" Name="SubscriptionUserID" StaticName="SubscriptionUserID" DisplayName="User ID" Type="Text" Required="TRUE" Group="Subscription Columns" />
+    <Field ID="{1DCECEB1-D1EC-49EB-9031-4A37EC609126}" Name="SubscriptionPageID" StaticName="SubscriptionPageID" DisplayName="Page ID" Type="Number" Required="TRUE" Group="Subscription Columns" />
+    <Field ID="{0C075436-FA73-4F8E-9EB3-E1F3CF6C1FC0}" Name="SubscriptionEmail" StaticName="SubscriptionEmail" DisplayName="Email" Type="Text" Required="TRUE" Group="Subscription Columns" />
+    <ContentType ID="0x0100AB385D98C5674CE7A16C005526D4B2AF" Name="Subscriptions" Group="Subscriptions" Description="Subscriptions from web part Subscriptions Manager">
+        <FieldRefs>
+            <FieldRef ID="{F9B8DAE9-FAC8-4304-B043-31E6AB66B964}" />
+            <FieldRef ID="{1DCECEB1-D1EC-49EB-9031-4A37EC609126}" />
+            <FieldRef ID="{0C075436-FA73-4F8E-9EB3-E1F3CF6C1FC0}" />
+        </FieldRefs>
+    </ContentType>
+    <ListInstance Hidden="TRUE" CustomSchema="schema.xml" FeatureId="bb4775f4-f5ae-4efb-9c5d-db8795d3637c" Title="Subscriptions" Description="Subscriptions" TemplateType="100" Url="Lists/Subscriptions"></ListInstance>
 </Elements>

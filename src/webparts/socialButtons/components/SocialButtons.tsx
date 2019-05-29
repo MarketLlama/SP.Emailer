@@ -1,10 +1,10 @@
 import * as React from 'react';
 import styles from './SocialButtons.module.scss';
 import { ISocialButtonsProps } from './ISocialButtonsProps';
-import { escape } from '@microsoft/sp-lodash-subset';
 import { Button } from 'office-ui-fabric-react';
 import { sp, Items, ItemAddResult } from "@pnp/sp";
-import YammerModal from './yammerModal/YammerModal';
+
+declare var yam;
 
 export interface ISocialButtonsState {
   isSubscribed : boolean;
@@ -24,6 +24,7 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
     });
     this._subScriptionListItems = sp.web.lists.getByTitle('Subscriptions').items;
     this._isSubscribedToPage();
+    this._loadYammerIntergration();
   }
   public render(): React.ReactElement<ISocialButtonsProps> {
     return (
@@ -44,14 +45,12 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
               />}
             </div>
             <div className={ styles.column }>
-              <Button className={`${styles.yammerButton}s`}
+              <Button className={`${styles.yammerButton} yammer-button`}
                 iconProps={{iconName : "YammerLogo"}}
                 text="Share"
-                onClick={this._sharePageOnYammer}
               />
             </div>
           </div>
-          <YammerModal showModal={this.state.showModal}/>
         </div>
       </div>
     );
@@ -89,12 +88,6 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
 
   }
 
-  private _sharePageOnYammer = ()=>{
-    console.log('Shared');
-    this.setState({
-      showModal : true
-    });
-  }
 
   private _isSubscribedToPage = ()=>{
     const PageID = this.props.pageId;
@@ -107,6 +100,18 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
           });
         }
       });
+  }
+
+  private _loadYammerIntergration = () =>{
+    let options = {
+      customButton : true, //false by default. Pass true if you are providing your own button to trigger the share popup
+      classSelector: 'yammer-button',//if customButton is true, you must pass the css class name of your button (so we can bind the click event for you)
+      defaultMessage: 'Check this out.', //optionally pass a message to prepopulate your post
+    };
+    //Have to wait for the external yammer file to load.
+    setTimeout(() => {
+      yam.platform.yammerShare(options);
+    }, 5000);
   }
 
 }
