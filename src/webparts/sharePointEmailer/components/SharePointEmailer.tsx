@@ -25,6 +25,9 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
       showModal: false,
       emailText: ''
     };
+    sp.setup({
+      spfxContext: this.props.context
+    });
   }
 
   public render(): React.ReactElement<ISharePointEmailerProps> {
@@ -109,7 +112,7 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
 
   private _getPageDetails = async () => {
     var id = this.props.context.pageContext.listItem.id;
-    const pages = sp.web.lists.getByTitle('SitePages').items;
+    const pages = sp.web.lists.getByTitle('Site Pages').items;
     let page = await pages.getById(id).select("Title", "FileRef").get();
     return page;
   }
@@ -146,16 +149,19 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
   }
 
   private _main = async() => {
-    //Get details of current page.
-    this._currentPage = await this._getPageDetails();
-    //Gets the subsribers of the page and sets them as default email contacts for the emailer.
-    //Uses the defaultSelectedUsers
-    let subscriptions = await this._getSubscriptions();
-    this._users = subscriptions;
-    subscriptions.forEach(item => {
-      this._defaultUsers.push(item.SubscriptionEmail);
-      this._toUsers.push(item.SubscriptionEmail);
-    });
-
+    try {
+      //Get details of current page.
+      this._currentPage = await this._getPageDetails();
+      //Gets the subsribers of the page and sets them as default email contacts for the emailer.
+      //Uses the defaultSelectedUsers
+      let subscriptions = await this._getSubscriptions();
+      this._users = subscriptions;
+      subscriptions.forEach(item => {
+        this._defaultUsers.push(item.SubscriptionEmail);
+        this._toUsers.push(item.SubscriptionEmail);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
