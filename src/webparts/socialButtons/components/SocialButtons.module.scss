@@ -1,7 +1,23 @@
 @import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
 
+%animation {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
+}
 
 .socialButtons {
+  @extend %animation;
+
   .container {
     margin: 0px auto;
   }
@@ -14,8 +30,8 @@
 
   .column {
     @include ms-Grid-col;
-    @include ms-lg6;
-    @include ms-xl6;
+    @include ms-lg4;
+    @include ms-xl4;
   }
 
   .title {

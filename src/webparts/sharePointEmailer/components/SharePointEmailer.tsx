@@ -5,7 +5,7 @@ import { ISharePointEmailerState } from './ISharePointEmailerState';
 import { Modal } from 'office-ui-fabric-react/lib/Modal';
 import { PrimaryButton, ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import { sp, EmailProperties, Web } from "@pnp/sp";
+import { sp, EmailProperties } from "@pnp/sp";
 import { PeoplePicker, PrincipalType } from "@pnp/spfx-controls-react/lib/PeoplePicker";
 import '../emailTemplates/standardEmailTemplate.html';
 
@@ -25,10 +25,6 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
       showModal: false,
       emailText: ''
     };
-
-    this._main = this._main.bind(this);
-    this._setMailText = this._setMailText.bind(this);
-    this._getPeoplePickerItems = this._getPeoplePickerItems.bind(this);
   }
 
   public render(): React.ReactElement<ISharePointEmailerProps> {
@@ -89,20 +85,17 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
     });
   }
 
-  private _getPeoplePickerItems(items: any[]) {
+  private _getPeoplePickerItems = (items: any[]) =>{
     items.forEach(item => {
       this._toUsers.push(item.secondaryText);
     });
   }
 
   private _getSubscriptions() {
-    return new Promise((resolve, reject) => {
+    return new Promise<any[]>((resolve, reject) => {
       try {
         const PageID = this.props.context.pageContext.listItem.id;
-
-        const parentWeb = new Web(this.props.context.pageContext.site.absoluteUrl);
-
-        parentWeb.lists.getByTitle("Subscriptions").items.filter("PageID eq '" + PageID + "'").get().then((items: any[]) => {
+        sp.web.lists.getByTitle("Subscriptions").items.filter("SubscriptionPageID eq '" + PageID + "'").get().then((items: any[]) => {
           resolve(items);
         });
 
@@ -152,19 +145,16 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
     this._main();
   }
 
-  private async _main() {
+  private _main = async() => {
     //Get details of current page.
     this._currentPage = await this._getPageDetails();
-    console.log(this._currentPage);
     //Gets the subsribers of the page and sets them as default email contacts for the emailer.
     //Uses the defaultSelectedUsers
     let subscriptions = await this._getSubscriptions();
-    let string = JSON.stringify(subscriptions);
-    let arr: any[] = JSON.parse(string);
-    this._users = arr;
-    arr.forEach(item => {
-      this._defaultUsers.push(item.Title);
-      this._toUsers.push(item.Title);
+    this._users = subscriptions;
+    subscriptions.forEach(item => {
+      this._defaultUsers.push(item.SubscriptionEmail);
+      this._toUsers.push(item.SubscriptionEmail);
     });
 
   }

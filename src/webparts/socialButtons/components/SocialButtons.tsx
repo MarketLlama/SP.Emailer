@@ -58,8 +58,8 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
 
   private _subscribeToPage = () =>{
     this._subScriptionListItems.add({
-      PageID : this.props.pageId,
-      UserID : this.props.context.pageContext.user.loginName,
+      SubscriptionPageID : this.props.pageId,
+      SubscriptionUserID : this.props.context.pageContext.user.loginName,
       SubscriptionEmail : this.props.context.pageContext.user.email
     }).then((value : ItemAddResult) =>{
       this.setState({
@@ -73,7 +73,7 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
   private _unsubscribeToPage =() =>{
     const PageID = this.props.pageId;
     const UserID = this.props.context.pageContext.user.loginName;
-    this._subScriptionListItems.filter(`PageID eq '${PageID}' and UserID eq ${UserID}`)
+    this._subScriptionListItems.filter(`SubscriptionPageID eq '${PageID}' and SubscriptionUserID eq '${UserID}'`)
       .get().then((value : any[]) =>{
         if(value){
           this._subScriptionListItems.getById(value[0].Id).delete().then(v =>{
@@ -92,7 +92,7 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
   private _isSubscribedToPage = ()=>{
     const PageID = this.props.pageId;
     const UserID = this.props.context.pageContext.user.loginName;
-    this._subScriptionListItems.filter(`PageID eq '${PageID}' and UserID eq ${UserID}`)
+    this._subScriptionListItems.filter(`SubscriptionPageID eq '${PageID}' and SubscriptionUserID eq '${UserID}'`)
       .get().then((value : any[]) =>{
         if(value){
           this.setState({
