@@ -112,7 +112,6 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
         console.log(e);
         reject();
       }
-
     });
   }
 

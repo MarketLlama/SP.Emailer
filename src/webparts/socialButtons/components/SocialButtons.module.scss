@@ -1,5 +1,24 @@
 @import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
 
+:global{
+  .swal-modal{
+    font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  }
+  .swal-button {
+    padding: 7px 19px;
+    border-radius: 2px;
+    font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    background-color: $ms-color-themePrimary;
+    font-size: 12px;
+    border: 1px solid;
+    border-color: $ms-color-themePrimary;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
+  .swal-button:hover{
+    background-color: $ms-color-themeDark !important;
+    border-color: $ms-color-themeDark !important;
+  }
+}
 %animation {
   @keyframes fadeIn {
     from {
@@ -38,6 +57,7 @@
           font-size: 30px;
           line-height: 60px;
           color: white;
+          cursor: pointer;
         }
         &:hover {
           a {

@@ -33,6 +33,7 @@
     "react": "16.7.0",
     "react-dom": "16.7.0",
     "react-tooltip": "^3.10.0",
+    "sweetalert": "^2.1.2",
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
