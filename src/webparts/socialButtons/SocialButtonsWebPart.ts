@@ -23,7 +23,7 @@ export default class SocialButtonsWebPart extends BaseClientSideWebPart<ISocialB
       SocialButtons,
       {
         context: this.context,
-        pageId : this.context.pageContext.listItem.id
+        pageId : 2//this.context.pageContext.listItem.id
       }
     );
 

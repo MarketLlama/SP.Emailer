@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styles from './SocialButtons.module.scss';
 import { ISocialButtonsProps } from './ISocialButtonsProps';
-import { Button } from 'office-ui-fabric-react';
+import { Icon } from 'office-ui-fabric-react';
 import { sp, Items, ItemAddResult } from "@pnp/sp";
+import ReactTooltip from 'react-tooltip';
 
 declare var yam;
 
@@ -13,6 +14,7 @@ export interface ISocialButtonsState {
 
 export default class SocialButtons extends React.Component<ISocialButtonsProps, ISocialButtonsState> {
   private _subScriptionListItems : Items = {} as Items;
+  private _mailToText : string;
   constructor(props : ISocialButtonsProps){
     super(props);
     this.state ={
@@ -25,32 +27,47 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
     this._subScriptionListItems = sp.web.lists.getByTitle('Subscriptions').items;
     this._isSubscribedToPage();
     this._loadYammerIntergration();
+    this._mailToText=
+      `mailto:ourpointofview@syngenta.com?subject=Syngenta Positions Site&body=Site Page: ${window.location.href}`;
   }
   public render(): React.ReactElement<ISocialButtonsProps> {
     return (
       <div className={ styles.socialButtons }>
         <div className={ styles.container }>
-          <div className={ styles.row }>
-            <div className={ styles.column }>
-              {!this.state.isSubscribed?
-              <Button className={styles.button}
-                iconProps={{iconName : "Heart"}}
-                text="Subscribe"
-                onClick={this._subscribeToPage}
-              /> :
-              <Button className={styles.button}
-                iconProps={{iconName : "HeartBroken"}}
-                text="Unsubscribe"
-                onClick={this._unsubscribeToPage}
-              />}
-            </div>
-            <div className={ styles.column }>
-              <Button className={`${styles.yammerButton} yammer-button`}
-                iconProps={{iconName : "YammerLogo"}}
-                text="Share"
-              />
-            </div>
-          </div>
+          <ul className={styles.socialButtonList} >
+            <li>
+            {!this.state.isSubscribed?
+              <a data-tip data-for='subscribe' onClick={this._subscribeToPage} className={styles.subscribeButton}>
+                <Icon iconName="Heart" />
+              </a> :
+              <a data-tip data-for='unsubscribe' onClick={this._unsubscribeToPage} className={styles.subscribeButton}>
+                <Icon iconName="HeartBroken" />
+              </a>
+            }
+              <ReactTooltip id='subscribe' type='dark' effect='solid'>
+                <span>Subscribe to article</span>
+              </ReactTooltip>
+              <ReactTooltip id='unsubscribe' type='dark' effect='solid'>
+                <span>Unsubscribe to article</span>
+              </ReactTooltip>
+            </li>
+            <li>
+              <a data-tip data-for='yammer' href="#" className={`${styles.yammerButton} yammer-button`}>
+                <Icon iconName="YammerLogo" />
+              </a>
+              <ReactTooltip id='yammer' type='dark' effect='solid'>
+                <span>Share on Yammer</span>
+              </ReactTooltip>
+            </li>
+            <li>
+              <a data-tip data-for='mail' href={this._mailToText} className={styles.basicButton}>
+                <Icon iconName="Mail" />
+              </a>
+              <ReactTooltip id='mail' type='dark' effect='solid'>
+                <span>Mail feedback to site owner</span>
+              </ReactTooltip>
+            </li>
+          </ul>
         </div>
       </div>
     );
@@ -111,7 +128,7 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
     //Have to wait for the external yammer file to load.
     setTimeout(() => {
       yam.platform.yammerShare(options);
-    }, 5000);
+    }, 3000);
   }
 
 }

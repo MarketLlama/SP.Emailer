@@ -7,6 +7,8 @@ import { PrimaryButton, ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import { sp, EmailProperties } from "@pnp/sp";
 import { PeoplePicker, PrincipalType } from "@pnp/spfx-controls-react/lib/PeoplePicker";
+import { SecurityTrimmedControl, PermissionLevel } from "@pnp/spfx-controls-react/lib/SecurityTrimmedControl";
+import { SPPermission } from '@microsoft/sp-page-context';
 import '../emailTemplates/standardEmailTemplate.html';
 
 export default class SharePointEmailer extends React.Component<ISharePointEmailerProps, ISharePointEmailerState> {
@@ -34,7 +36,11 @@ export default class SharePointEmailer extends React.Component<ISharePointEmaile
     return (
       <div className={styles.sharePointEmailer}>
         <div className={styles.container}>
-          <ActionButton iconProps={{ iconName: 'Mail' }} onClick={this._showModal} text="Send Email to Subscribers" />
+          <SecurityTrimmedControl context={this.props.context}
+                        level={PermissionLevel.currentWeb}
+                        permissions={[SPPermission.manageWeb]}>
+            <ActionButton iconProps={{ iconName: 'Mail' }} onClick={this._showModal} text="Send Email to Subscribers" />
+          </SecurityTrimmedControl>
           <Modal
             isOpen={this.state.showModal}
             onDismiss={this._closeModal}
