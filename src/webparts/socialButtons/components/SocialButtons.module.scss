@@ -20,8 +20,12 @@
 
   .container {
     margin: 0px auto;
+    height: 50px;
     ul.socialButtonList {
       text-align: center;
+      margin: 0;
+      padding: 0;
+      position: absolute;
       li {
         display: inline-block;
         margin: 0 10px;
@@ -51,6 +55,15 @@
           background-color: #d81e72;
         }
       }
+    }
+  }
+  @media only screen and (max-width: 650px) {
+    .socialButtonList{
+      position: inherit !important;
+    }
+    .container{
+      width: 100% !important;
+      height: 70px !important;
     }
   }
 }
