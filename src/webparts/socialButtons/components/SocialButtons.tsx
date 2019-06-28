@@ -65,7 +65,7 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
               </ReactTooltip>
             </li>
             <li>
-              <a data-tip data-for='mail' href={this._mailToText} className={styles.basicButton}>
+              <a data-tip data-for='mail' href={this._mailToText} className={styles.basicButton} target="_top">
                 <Icon iconName="Mail" />
               </a>
               <ReactTooltip id='mail' type='dark' effect='solid'>
