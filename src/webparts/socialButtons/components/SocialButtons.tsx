@@ -89,7 +89,7 @@ export default class SocialButtons extends React.Component<ISocialButtonsProps, 
       });
       swal({
         title: "Subscribed!",
-        text: `You are subscribed to this page to recieve email updates.`,
+        text: `You are subscribed to this page to receive email updates.`,
         icon: "success",
         buttons : {
             confirm: {

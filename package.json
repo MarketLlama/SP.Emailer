@@ -22,7 +22,7 @@
     "@pnp/odata": "^1.2.7",
     "@pnp/polyfill-ie11": "^1.0.0",
     "@pnp/sp": "^1.2.7",
-    "@pnp/spfx-controls-react": "^1.10.0",
+    "@pnp/spfx-controls-react": "^1.13.2",
     "@types/es6-promise": "0.0.33",
     "@types/react": "16.7.22",
     "@types/react-dom": "16.8.0",
